@@ -98,12 +98,12 @@ app = FastAPI()
 @app.get("/")
 async def main():
     content = """
-        <body>
-            <form action="/uploadfile/" method="post">
-                <input name="files" type="file">
-                <input type="submit">
-            </form>
-        </body>
+    <body>
+        <form action="/files/" enctype="multipart/form-data" method="post">
+            <input name="files" type="file">
+            <input type="submit">
+        </form>
+    </body>
     """
     return HTMLResponse(content=content)
 
