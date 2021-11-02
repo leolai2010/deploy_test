@@ -96,16 +96,8 @@ def outputTable():
 app = FastAPI()
 
 @app.get("/")
-async def main():
-    content = """
-    <body>
-        <form action="/files/" enctype="multipart/form-data" method="post">
-            <input name="files" type="file">
-            <input type="submit">
-        </form>
-    </body>
-    """
-    return HTMLResponse(content=content)
+async def root():
+    return {"message": "Hello World"}
 
 @app.post("/uploadfile/")
 async def create_upload_file(file: UploadFile = File(...)):
