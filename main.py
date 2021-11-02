@@ -112,4 +112,5 @@ async def root(file: UploadFile = File(...)):
     for fasta in fasta_sequences:
         name, sequence = fasta.id, str(fasta.seq)
         protein_sequences[name] = sequence  
-    return protein_sequences
+    print(protein_sequences)
+    return {"Working":"OK"}
