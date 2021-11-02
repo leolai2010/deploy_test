@@ -108,9 +108,9 @@ async def root(file: UploadFile = File(...)):
     filename = f'{dir_path}\\{time.time()}-{file.filename}'
     f = open(f'{filename}', 'wb')
     f.write(fasta_file)
-    fasta_sequences = SeqIO.parse(open(filename), 'fasta')
-    for fasta in fasta_sequences:
-        name, sequence = fasta.id, str(fasta.seq)
-        protein_sequences[name] = sequence  
-    print(protein_sequences)
+    # fasta_sequences = SeqIO.parse(open(filename), 'fasta')
+    # for fasta in fasta_sequences:
+    #     name, sequence = fasta.id, str(fasta.seq)
+    #     protein_sequences[name] = sequence  
+    # print(protein_sequences)
     return {"Working":"OK"}
