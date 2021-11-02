@@ -97,4 +97,4 @@ def outputTable():
 
 
 # Start the eel server with the correct HTML file
-eel.start('index.html') 
+eel.start('index.html', host="0.0.0.0") 
