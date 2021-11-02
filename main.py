@@ -4,7 +4,7 @@ from Bio import SeqIO
 import re
 import numpy as np
 import pandas as pd
-from fastapi import FastAPI
+from fastapi import FastAPI, File, UploadFile
 from typing import Optional
 
 # Function for parsing sequence in FASTA file into a Python dictionary relying on BioPython library
