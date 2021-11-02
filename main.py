@@ -99,11 +99,11 @@ app = FastAPI()
 async def root():
     return {"message": "Hello World"}
 
-@app.post("/uploadfile/")
-async def create_upload_file(file: UploadFile = File(...)):
+@app.post("/uploadFASTAFile/")
+async def uploadFASTAFile(fasta_file: UploadFile = File(...)):
     protein_sequences = {}
     fasta_sequences = SeqIO.parse(open(file), 'fasta')
     for fasta in fasta_sequences:
         name, sequence = fasta.id, str(fasta.seq)
         protein_sequences[name] = sequence  
-    return {"protein_sequence":protein_sequences}
+    return {protein_sequences}
