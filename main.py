@@ -1,13 +1,9 @@
 ##!/usr/bin/env python
 # Import necessary libraries
-import eel
 from Bio import SeqIO
 import re
 import numpy as np
 import pandas as pd
-
-# Initialize eel and the associated contents
-eel.init('web', allowed_extensions=['.js', '.html'])
 
 # Function for parsing sequence in FASTA file into a Python dictionary relying on BioPython library
 def parseFASTA(sequenceFile):
@@ -92,9 +88,5 @@ def outputTable():
     data = sequencePairing(sequenceFile, inputFile)
     df = pd.DataFrame.from_dict({(i, j): (i, j, k) for i in data.keys() for j, k in data[i].items() }, orient='index')
     df.reset_index().drop(columns=['index'])
-    df.columns = ['Protein Name', 'Peptide Name', 'Modified Amino Acid Position']
-    df.to_excel("output.xlsx", index=False) 
-
-
-# Start the eel server with the correct HTML file
-eel.start('index.html', host="0.0.0.0") 
+    json_package = df.to_json(index=False, orient='split')
+    return json_package
