@@ -5,6 +5,7 @@ import re
 import numpy as np
 import pandas as pd
 from fastapi import FastAPI
+from typing import Optional
 
 # Function for parsing sequence in FASTA file into a Python dictionary relying on BioPython library
 def parseFASTA(sequenceFile):
@@ -92,6 +93,12 @@ def outputTable():
     json_package = df.to_json(index=False, orient='split')
     return json_package
 
-@app.get("/", response_class=PlainTextResponse)
-async def main():
-    return "Hello World"
+app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
+@app.get("/items/{item_id}")
+def read_item(item_id: int, q: Optional[str] = None):
+    return {"item_id": item_id, "q": q}
