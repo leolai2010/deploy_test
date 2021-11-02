@@ -1,11 +1,10 @@
 ##!/usr/bin/env python
 # Import necessary libraries
+from fastapi import FastAPI, File, UploadFile
 from Bio import SeqIO
 import re
 import numpy as np
 import pandas as pd
-from fastapi import FastAPI, File, UploadFile
-from typing import Optional
 
 # Function for parsing sequence in FASTA file into a Python dictionary relying on BioPython library
 def parseFASTA(sequenceFile):
@@ -102,7 +101,7 @@ async def root():
 @app.post("/uploadFASTAFile/")
 async def uploadFASTAFile(fasta_file: UploadFile = File(...)):
     protein_sequences = {}
-    fasta_sequences = SeqIO.parse(open(file), 'fasta')
+    fasta_sequences = SeqIO.parse(open(fasta_file), 'fasta')
     for fasta in fasta_sequences:
         name, sequence = fasta.id, str(fasta.seq)
         protein_sequences[name] = sequence  
