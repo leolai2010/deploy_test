@@ -101,7 +101,7 @@ async def root():
 @app.post("/uploadFASTAFile/")
 async def uploadFASTAFile(fasta_file: UploadFile = File(...)):
     protein_sequences = {}
-    fasta_sequences = SeqIO.parse(open(fasta_file), 'fasta')
+    fasta_sequences = await SeqIO.parse(open(fasta_file), 'fasta')
     for fasta in fasta_sequences:
         name, sequence = fasta.id, str(fasta.seq)
         protein_sequences[name] = sequence  
